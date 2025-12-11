@@ -6,6 +6,7 @@ import {
   BankOutlined,
   DeleteOutlined,
   EditOutlined,
+  EyeOutlined,
   IdcardOutlined,
   KeyOutlined,
   LoginOutlined,
@@ -34,6 +35,7 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import QRCode from "qrcode";
 import { handlePrintIDCard } from "@/components/UserPrint";
+import Link from "next/link";
 
 export default function Page() {
   const [upsert, setUpsert] = useState<IActionTable<IUser>>({
@@ -169,7 +171,7 @@ export default function Page() {
       key: "status",
       render: (status) => (
         <Tag color={status ? "success" : "error"} variant="solid">
-          {status ? "Aktif" : "Tidak Aktif"}
+          {status ? "Aktif" : "Non Aktif"}
         </Tag>
       ),
       sorter: (a, b) => (a.status === b.status ? 0 : a.status ? 1 : -1),
@@ -276,6 +278,9 @@ export default function Page() {
             type="primary"
             danger
           ></Button>
+          <Link href={"/user/" + record.nip} target="_blank">
+            <Button icon={<EyeOutlined />} size="small" type="primary"></Button>
+          </Link>
         </div>
       ),
     },

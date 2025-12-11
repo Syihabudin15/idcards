@@ -132,3 +132,21 @@ export const DELETE = async (request: NextRequest) => {
     });
   }
 };
+
+export const PATCH = async (req: NextRequest) => {
+  const nip = req.nextUrl.searchParams.get("nip");
+  if (!nip)
+    return NextResponse.json(
+      { msg: "Data tidak ditemukan", status: 400 },
+      { status: 400 }
+    );
+
+  const find = await prisma.user.findFirst({ where: { nip } });
+  if (!find)
+    return NextResponse.json(
+      { msg: "Data tidak ditemukan", status: 400 },
+      { status: 400 }
+    );
+
+  return NextResponse.json({ status: 200, data: find }, { status: 200 });
+};

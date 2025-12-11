@@ -4,7 +4,6 @@ import {
   MailOutlined,
   PhoneOutlined,
   GlobalOutlined,
-  HomeOutlined,
   BankOutlined,
   IdcardOutlined,
   QrcodeOutlined,
@@ -84,7 +83,7 @@ const UserDetail = ({ user }: { user: IUser }) => {
             </div>
           </div>
 
-          <div className="flex items-start space-x-3 my-2">
+          {/* <div className="flex items-start space-x-3 my-2">
             <HomeOutlined className="text-gray-400 text-xl w-6 mt-1" />
             <div className="flex gap-2">
               <span className="font-medium text-gray-600 w-30">Alamat</span>
@@ -95,7 +94,7 @@ const UserDetail = ({ user }: { user: IUser }) => {
                 Kota City, Provinsi Prov 4xxxx
               </p>
             </div>
-          </div>
+          </div> */}
 
           <div className="flex items-center space-x-3 my-2">
             <BankOutlined className="text-gray-400 text-xl w-6" />
@@ -150,7 +149,7 @@ const UserDetail = ({ user }: { user: IUser }) => {
                 rel="noopener noreferrer"
                 className="ml-2 text-blue-500 hover:underline"
               >
-                /user/{user.nip}
+                {window.location.origin}/user/{user.nip}
               </a>
             </div>
           </div>
