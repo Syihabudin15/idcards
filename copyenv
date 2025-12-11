@@ -1,0 +1,13 @@
+# Application
+NEXT_PUBLIC_APP_NAME="BPR RIMA"
+
+# Database
+DATABASE_URL="mysql://root:@localhost:3306/idcards"
+
+# AZURE
+# AZURE
+AZURE_STORAGE_ACCOUNT_NAME="earsip"
+AZURE_STORAGE_ACCOUNT_FOLDER="idcards"
+AZURE_STORAGE_ACCOUNT_KEY="rhRMdH6ZNlh0d5VHxDdtE3ismaAn7fdhGtjI6mZqbOw+k/82HKjso6qDgCpAwtLPT0oGiuG6PTaa+AStjUYo1Q=="
+AZURE_STORAGE_CONTAINER_NAME="earsip"
+STORAGE_STRING="DefaultEndpointsProtocol=https;AccountName=earsip;AccountKey=rhRMdH6ZNlh0d5VHxDdtE3ismaAn7fdhGtjI6mZqbOw+k/82HKjso6qDgCpAwtLPT0oGiuG6PTaa+AStjUYo1Q==;EndpointSuffix=core.windows.net"
