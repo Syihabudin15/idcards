@@ -107,19 +107,22 @@ const generateContent = (user: IUser, qrUrl: string) => `
       width: 100%;
       height: 100%;
     }
+    .header-bg {
+      background: linear-gradient(to right, #004aad, #0102cf, #ff3333);
+      color: white;
+    }
   </style>
 </head>
 
 <body>
   <div class="card small-text">
 
-    <div class="flex gap-4 p-2 items-center bg-gradient-to-br from-purple-500 to-blue-500 rounded text-white">
+    <div class="flex gap-4 p-2 items-center header-bg rounded text-white">
       <div class="photo">
         <img src="${user.photo || "/default.png"}" />
       </div>
       <div class="flex-1">
         <p style="font-weight:bold; font-size:9px;">${user.fullname.toUpperCase()}</p>
-        <p class="small-text opacity-70">${user.nik}</p>
         <p class="small-text opacity-70">@${user.nip}</p>
       </div>
     </div>
@@ -158,7 +161,7 @@ const generateContent = (user: IUser, qrUrl: string) => `
     </div>
 
 
-    <div class="flex justify-between items-center p-2 bg-gradient-to-br from-purple-500 to-blue-500 rounded text-white">
+    <div class="flex justify-between items-center p-2 header-bg rounded text-white">
       <div>
         <p style="font-weight:bold;">
           ${(process.env.NEXT_PUBLIC_APP_NAME || "CARDS ID").toUpperCase()}

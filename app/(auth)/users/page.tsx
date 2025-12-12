@@ -109,7 +109,7 @@ export default function Page() {
         return (
           <div>
             <p>{record.fullname}</p>
-            <p className="text-xs italic opacity-70">{record.nik}</p>
+            {/* <p className="text-xs italic opacity-70">{record.nik}</p> */}
           </div>
         );
       },
@@ -485,6 +485,16 @@ function UpsertUser({
         />
         <FormInput
           data={{
+            label: "NIP",
+            mode: "horizontal",
+            type: "text",
+            value: data.nip,
+            onChange: (e: string) => setData({ ...data, nip: e }),
+            placeholder: "Kosongkan jika generate by Sistem",
+          }}
+        />
+        {/* <FormInput
+          data={{
             label: "NIK",
             mode: "horizontal",
             required: true,
@@ -492,7 +502,7 @@ function UpsertUser({
             value: data.nik,
             onChange: (e: string) => setData({ ...data, nik: e }),
           }}
-        />
+        /> */}
         <FormInput
           data={{
             label: "Jenis Kelamin",
@@ -505,16 +515,6 @@ function UpsertUser({
             ],
             value: data.jk,
             onChange: (e: string) => setData({ ...data, jk: e }),
-          }}
-        />
-        <FormInput
-          data={{
-            label: "NIP",
-            mode: "horizontal",
-            type: "text",
-            value: data.nip,
-            onChange: (e: string) => setData({ ...data, nip: e }),
-            placeholder: "Kosongkan jika generate by Sistem",
           }}
         />
         <FormInput

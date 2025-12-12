@@ -26,7 +26,7 @@ export default async function Page({ params }: { params: Promise<params> }) {
   }
 
   return (
-    <div className="bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500 py-4">
+    <div className="bg-[linear-gradient(to_right,#004aad,#0102cf,#ff3333)] py-4 min-h-screen p-2">
       <UserViewV2 user={user} />
     </div>
   );

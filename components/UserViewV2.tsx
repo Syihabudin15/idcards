@@ -15,6 +15,7 @@ import { IUser } from "./IInterfaces";
 import { useEffect, useState } from "react";
 import { Col, Row } from "antd";
 import { handlePrintIDCard } from "./UserPrint";
+import Link from "next/link";
 
 const UserDetail = ({ user }: { user: IUser }) => {
   const [qrCodeUrl, setQrCodeUrl] = useState<string | null>(null); // State untuk menyimpan data URL QR code
@@ -50,7 +51,7 @@ const UserDetail = ({ user }: { user: IUser }) => {
   return (
     <div className="max-w-5xl mx-auto my-10 bg-white shadow-xl rounded-lg overflow-hidden">
       {/* Header: Avatar dan Nama */}
-      <div className="bg-linear-to-r from-blue-500 to-purple-600 p-6">
+      <div className="bg-[linear-gradient(to_right,#004aad,#0102cf,#ff3333)] p-6">
         <div className="flex items-center space-x-4">
           <img
             className="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover"
@@ -67,7 +68,7 @@ const UserDetail = ({ user }: { user: IUser }) => {
 
       <Row gutter={[24, 24]} style={{ padding: 20 }}>
         {/* Informasi Lain */}
-        <Col xs={24} lg={12}>
+        <Col xs={24} lg={24}>
           <h2 className="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">
             Informasi User
           </h2>
@@ -118,7 +119,7 @@ const UserDetail = ({ user }: { user: IUser }) => {
         </Col>
 
         {/*  Informasi Kontak */}
-        <Col xs={24} lg={12}>
+        <Col xs={24} lg={24}>
           <h2 className="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">
             Informasi Kontak
           </h2>
@@ -127,7 +128,13 @@ const UserDetail = ({ user }: { user: IUser }) => {
             <MailOutlined className="text-gray-400 text-xl w-6" />
             <div>
               <span className="font-medium text-gray-600">Email:</span>
-              <span className="ml-2 text-gray-800">{user.email}</span>
+              <Link
+                href={"mailto:" + user.email}
+                target="_blank"
+                className="ml-2 text-gray-800"
+              >
+                {user.email}
+              </Link>
             </div>
           </div>
 
@@ -135,7 +142,19 @@ const UserDetail = ({ user }: { user: IUser }) => {
             <PhoneOutlined className="text-gray-400 text-xl w-6" />
             <div>
               <span className="font-medium text-gray-600">Telepon:</span>
-              <span className="ml-2 text-gray-800">{user.phone}</span>
+              {user.phone && (
+                <Link
+                  href={`https://wa.me/+62${
+                    user.phone.startsWith("0")
+                      ? user.phone.slice(1)
+                      : user.phone
+                  }`}
+                  target="_blank"
+                  className="ml-2 text-gray-800"
+                >
+                  {user.phone}
+                </Link>
+              )}
             </div>
           </div>
 
@@ -149,14 +168,14 @@ const UserDetail = ({ user }: { user: IUser }) => {
                 rel="noopener noreferrer"
                 className="ml-2 text-blue-500 hover:underline"
               >
-                {window.location.origin}/user/{user.nip}
+                https://bankrifi.co.id
               </a>
             </div>
           </div>
         </Col>
 
         {/* QR Code */}
-        <Col span={24}>
+        {/* <Col span={24}>
           <div className="border-t pt-4 mt-6">
             <h2 className="text-xl font-semibold text-gray-800 border-b pb-2 mb-4 flex items-center">
               <QrcodeOutlined className="mr-2" />
@@ -179,10 +198,10 @@ const UserDetail = ({ user }: { user: IUser }) => {
               )}
             </div>
           </div>
-        </Col>
+        </Col> */}
       </Row>
       {/* <div className="p-6 space-y-4"></div> */}
-      {qrCodeUrl && (
+      {/* {qrCodeUrl && (
         <div className="border-t pt-4 mt-6">
           <button
             onClick={() => handlePrintIDCard(user, qrCodeUrl)}
@@ -192,7 +211,7 @@ const UserDetail = ({ user }: { user: IUser }) => {
             <span>Cetak ID Card (PDF)</span>
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
