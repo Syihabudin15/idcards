@@ -163,7 +163,7 @@ const UserDetail = ({ user }: { user: IUser }) => {
             <div>
               <span className="font-medium text-gray-600">Website:</span>
               <a
-                href={`/user/${user.nip}`}
+                href={`https://bankrifi.co.id`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ml-2 text-blue-500 hover:underline"

@@ -62,7 +62,7 @@ const generateContent = (user: IUser, qrUrl: string) => `
       overflow: hidden;
       border: 1px solid #d5d5d5;
       position: relative;
-      padding: 2mm;
+      padding: 2mm 4mm;
 
       display: flex;
       flex-direction: column;
@@ -78,8 +78,8 @@ const generateContent = (user: IUser, qrUrl: string) => `
     .justify-between { justify-content: space-between; }
 
     .photo {
-      width: 14mm;
-      height: 14mm;
+      width: 22mm;
+      height: 22mm;
       border-radius: 50%;
       overflow: hidden;
       border: 1px solid #1e3a8a;
@@ -88,6 +88,7 @@ const generateContent = (user: IUser, qrUrl: string) => `
     .photo img {
       width: 100%;
       height: 100%;
+      transform: scale(1.2); 
       object-fit: cover;
     }
 
@@ -117,51 +118,64 @@ const generateContent = (user: IUser, qrUrl: string) => `
 <body>
   <div class="card small-text">
 
-    <div class="flex gap-4 p-2 items-center header-bg rounded text-white">
+    <div class="flex flex-col gap-2 p-2 items-center rounded border-b">
       <div class="photo">
         <img src="${user.photo || "/default.png"}" />
       </div>
-      <div class="flex-1">
+      <div class="flex-1 text-center">
         <p style="font-weight:bold; font-size:9px;">${user.fullname.toUpperCase()}</p>
-        <p class="small-text opacity-70">@${user.nip}</p>
+        <div style="line-height:1.1;">
+          <p class="small-text opacity-70">@${user.nip}</p>
+          <p class="small-text opacity-70">${user.jk}</p>
+        </div>
       </div>
     </div>
 
 
-    <div class="my-4">
-      <p class="font-bold my-2 opacity-70 text-center">USER INFORMATION</p>
-      <div class="flex justify-between items-center my-1">
-        <p class="font-bold">USER ID</p>
+    <div class="my-1 flex flex-col gap-0.5">
+      <div class="flex justify-between items-center">
+        <p class="font-bold">No ID</p>
         <p>${user.id}</p>
       </div>
-      <div class="flex justify-between items-center my-1">
-        <p class="font-bold">USER NIP</p>
-        <p>${user.nip}</p>
+      <div class="flex justify-between items-center">
+        <p class="font-bold">Perusahaan</p>
+        <p>${process.env.NEXT_PUBLIC_APP_FULLNAME || "BANK RIFI"}</p>
       </div>
-      <div class="flex justify-between items-center my-1">
-        <p class="font-bold">GENDER</p>
-        <p>${user.jk}</p>
-      </div>
-      <div class="flex justify-between items-center my-1">
-        <p class="font-bold">JABATAN</p>
+      <div class="flex justify-between items-center">
+        <p class="font-bold">Jabatan</p>
         <p>${user.position}</p>
       </div>
-      <div class="flex justify-between items-center my-1">
-        <p class="font-bold">TANGGAL MASUK</p>
-        <p>${moment(user.tgl_join).format("DD/MM/YYYY")}</p>
-      </div>
-      <div class="flex justify-between items-center my-1">
-        <p class="font-bold">EMAIL</p>
+      <div class="flex justify-between items-center">
+        <p class="font-bold">Email</p>
         <p>${user.email ? user.email : "-"}</p>
       </div>
-      <div class="flex justify-between items-center my-1">
-        <p class="font-bold">TELEPON</p>
+      <div class="flex justify-between items-center">
+        <p class="font-bold">Handphone</p>
         <p>${user.phone ? user.phone : "-"}</p>
+      </div>
+      <div class="flex justify-between items-center">
+        <p class="font-bold">Website</p>
+        <p>www.bankrifi.co.id</p>
       </div>
     </div>
 
 
-    <div class="flex justify-between items-center p-2 header-bg rounded text-white">
+    <div class="flex justify-between items-center rounded border-t pt-2">
+      <img src="${
+        process.env.NEXT_PUBLIC_APP_LOGO || "/rifi-logo.png"
+      }" style="width: 12mm; height: 12mm;"/>
+      <div class="qr-frame">
+        <img src="${qrUrl}" />
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
+`;
+
+{
+  /* <div class="flex justify-between items-center p-2 header-bg rounded text-white">
       <div>
         <p style="font-weight:bold;">
           ${(process.env.NEXT_PUBLIC_APP_NAME || "CARDS ID").toUpperCase()}
@@ -178,9 +192,5 @@ const generateContent = (user: IUser, qrUrl: string) => `
       <div class="qr-frame">
         <img src="${qrUrl}" />
       </div>
-    </div>
-
-  </div>
-</body>
-</html>
-`;
+    </div> */
+}
