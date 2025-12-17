@@ -6,44 +6,13 @@ import {
   GlobalOutlined,
   BankOutlined,
   IdcardOutlined,
-  QrcodeOutlined,
   KeyOutlined,
-  PrinterOutlined,
 } from "@ant-design/icons";
-import QRCode from "qrcode";
 import { IUser } from "./IInterfaces";
-import { useEffect, useState } from "react";
 import { Col, Row } from "antd";
-import { handlePrintIDCard } from "./UserPrint";
 import Link from "next/link";
 
 const UserDetail = ({ user }: { user: IUser }) => {
-  const [qrCodeUrl, setQrCodeUrl] = useState<string | null>(null); // State untuk menyimpan data URL QR code
-
-  // 2. Buat QR code setiap kali komponen menerima data user
-  useEffect(() => {
-    if (user) {
-      // URL yang akan di-encode. Ini akan menghasilkan URL absolut.
-      const profileUrl = `${window.location.origin}/user/${user.nip}`;
-
-      // Generate QR code menjadi data URL
-      QRCode.toDataURL(profileUrl, {
-        width: 150,
-        margin: 1,
-        color: {
-          dark: "#000000", // Titik-titik QR
-          light: "#FFFFFF", // Background QR
-        },
-      })
-        .then((url: string) => {
-          setQrCodeUrl(url);
-        })
-        .catch((err: any) => {
-          console.error(err);
-        });
-    }
-  }, [user]);
-
   if (!user) {
     return <div className="text-center p-4">Memuat data user...</div>;
   }
@@ -51,15 +20,22 @@ const UserDetail = ({ user }: { user: IUser }) => {
   return (
     <div className="max-w-5xl mx-auto my-10 bg-white shadow-xl rounded-lg overflow-hidden">
       {/* Header: Avatar dan Nama */}
-      <div className="bg-[linear-gradient(to_right,#004aad,#0102cf,#ff3333)] p-6">
-        <div className="flex items-center space-x-4">
-          <img
-            className="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover"
-            src={user.photo || `/default.png`} // Gunakan avatar dari data atau placeholder
-            alt={`${user.fullname}'s avatar`}
-          />
-          <div>
-            <h1 className="text-3xl font-bold text-white">{user.fullname}</h1>
+      <div className="bg-[linear-gradient(to_right,#004aad,#0102cf,#ff3333)] p-4 sm:p-6">
+        <div className="flex items-center flex-col sm:flex-row space-x-4 gap-2">
+          {/* Container Foto dengan overflow-hidden agar zoom tidak keluar lingkaran */}
+          <div className="w-32 h-32 border-4 rounded-full border-white shadow-lg overflow-hidden bg-white">
+            <img
+              className="w-full h-full object-cover scale-[1.2]"
+              /* Ganti scale-[1.6] sesuai tingkat kedekatan yang diinginkan */
+              src={user.photo || `/default.png`}
+              alt={`${user.fullname}'s avatar`}
+            />
+          </div>
+
+          <div className="text-center sm:text-left">
+            <h1 className="text-3xl font-bold text-white uppercase">
+              {user.fullname}
+            </h1>
             <p className="text-blue-100">@{user.nip}</p>
             <p className="text-blue-100">{user.jk}</p>
           </div>

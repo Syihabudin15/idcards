@@ -51,7 +51,7 @@ export default function Page() {
                   }}
                 >
                   <Image
-                    src="/globe.svg"
+                    src={process.env.NEXT_PUBLIC_APP_LOGO || "/globe.svg"}
                     alt="Logo"
                     width={40}
                     height={40}
