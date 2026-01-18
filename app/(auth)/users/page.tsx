@@ -7,6 +7,7 @@ import {
   DeleteOutlined,
   EditOutlined,
   EyeOutlined,
+  HomeOutlined,
   IdcardOutlined,
   KeyOutlined,
   LoginOutlined,
@@ -160,6 +161,9 @@ export default function Page() {
             </p>
             <p>
               <MailOutlined /> {record.email}
+            </p>
+            <p>
+              <HomeOutlined /> {record.address}
             </p>
           </div>
         );
@@ -556,6 +560,15 @@ function UpsertUser({
         />
         <FormInput
           data={{
+            label: "Alamat",
+            mode: "horizontal",
+            type: "textarea",
+            value: data.address,
+            onChange: (e: string) => setData({ ...data, address: e }),
+          }}
+        />
+        <FormInput
+          data={{
             label: "Foto",
             mode: "horizontal",
             type: "upload",
@@ -659,6 +672,7 @@ const defaultUser: IUser = {
   tgl_join: new Date(),
   tgl_leave: null,
   photo: null,
+  address: "",
 
   status: true,
   created_at: new Date(),

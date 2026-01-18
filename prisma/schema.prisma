@@ -18,6 +18,7 @@ model User {
   password String
   phone    String?
   photo    String?
+  address  String?
 
   tgl_join  DateTime
   tgl_leave DateTime?

@@ -7,6 +7,7 @@ import {
   BankOutlined,
   IdcardOutlined,
   KeyOutlined,
+  HomeOutlined,
 } from "@ant-design/icons";
 import { IUser } from "./IInterfaces";
 import { Col, Row } from "antd";
@@ -60,19 +61,6 @@ const UserDetail = ({ user }: { user: IUser }) => {
             </div>
           </div>
 
-          {/* <div className="flex items-start space-x-3 my-2">
-            <HomeOutlined className="text-gray-400 text-xl w-6 mt-1" />
-            <div className="flex gap-2">
-              <span className="font-medium text-gray-600 w-30">Alamat</span>
-              <span className="font-medium text-gray-600 w-4">:</span>
-              <p className="flex-1 text-gray-800">
-                Alamat Jl. xxxx, No x
-                <br />
-                Kota City, Provinsi Prov 4xxxx
-              </p>
-            </div>
-          </div> */}
-
           <div className="flex items-center space-x-3 my-2">
             <BankOutlined className="text-gray-400 text-xl w-6" />
             <div className="flex gap-2">
@@ -102,12 +90,13 @@ const UserDetail = ({ user }: { user: IUser }) => {
 
           <div className="flex items-center space-x-3 my-2">
             <MailOutlined className="text-gray-400 text-xl w-6" />
-            <div>
-              <span className="font-medium text-gray-600">Email:</span>
+            <div className="flex gap-2">
+              <span className="font-medium text-gray-600 w-30">Email</span>
+              <span className="font-medium text-gray-600 w-4">:</span>
               <Link
                 href={"mailto:" + user.email}
                 target="_blank"
-                className="ml-2 text-gray-800"
+                className="flex-1 text-gray-800"
               >
                 {user.email}
               </Link>
@@ -116,8 +105,9 @@ const UserDetail = ({ user }: { user: IUser }) => {
 
           <div className="flex items-center space-x-3 my-2">
             <PhoneOutlined className="text-gray-400 text-xl w-6" />
-            <div>
-              <span className="font-medium text-gray-600">Telepon:</span>
+            <div className="flex gap-2">
+              <span className="font-medium text-gray-600 w-30">Telepon</span>
+              <span className="font-medium text-gray-600 w-4">:</span>
               {user.phone && (
                 <Link
                   href={`https://wa.me/+62${
@@ -126,7 +116,7 @@ const UserDetail = ({ user }: { user: IUser }) => {
                       : user.phone
                   }`}
                   target="_blank"
-                  className="ml-2 text-gray-800"
+                  className="flex-1 text-gray-800"
                 >
                   {user.phone}
                 </Link>
@@ -134,15 +124,25 @@ const UserDetail = ({ user }: { user: IUser }) => {
             </div>
           </div>
 
+          <div className="flex items-start space-x-3 my-2">
+            <HomeOutlined className="text-gray-400 text-xl w-6" />
+            <div className="flex gap-2">
+              <span className="font-medium text-gray-600 w-30">Alamat</span>
+              <span className="font-medium text-gray-600 w-4">:</span>
+              <p className="flex-1 text-gray-800">{user.address}</p>
+            </div>
+          </div>
+
           <div className="flex items-center space-x-3 my-2">
             <GlobalOutlined className="text-gray-400 text-xl w-6" />
-            <div>
-              <span className="font-medium text-gray-600">Website:</span>
+            <div className="flex gap-2">
+              <span className="font-medium text-gray-600 w-30">Website</span>
+              <span className="font-medium text-gray-600 w-4">:</span>
               <a
                 href={`https://bankrifi.co.id`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-2 text-blue-500 hover:underline"
+                className="flex-1 text-blue-500 hover:underline"
               >
                 https://bankrifi.co.id
               </a>

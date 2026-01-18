@@ -19,6 +19,7 @@ async function main() {
     photo: null,
     tgl_join: new Date(),
     tgl_leave: null,
+    address: "",
 
     status: true,
     created_at: new Date(),
